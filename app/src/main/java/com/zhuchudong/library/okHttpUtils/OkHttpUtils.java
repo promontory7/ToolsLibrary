@@ -4,7 +4,9 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.zhuchudong.library.okHttpUtils.builder.GetBuilder;
+import com.zhuchudong.library.okHttpUtils.builder.PostFileBuilder;
 import com.zhuchudong.library.okHttpUtils.builder.PostFormBuilder;
+import com.zhuchudong.library.okHttpUtils.builder.PostStringBuilder;
 import com.zhuchudong.library.okHttpUtils.callback.BaseCallBack;
 import com.zhuchudong.library.okHttpUtils.request.RequestCall;
 
@@ -12,6 +14,7 @@ import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
 
@@ -19,7 +22,7 @@ import okhttp3.Response;
  * Created by Administrator on 2016/5/12.
  */
 public class OkHttpUtils {
-    public static final long DEFAULT_MILLISECONDS = 10000;
+    public static final long DEFAULT_MILLISECONDS = 5000;
 
     Handler mDelivery;
     private static OkHttpUtils mInstances;
@@ -52,7 +55,6 @@ public class OkHttpUtils {
     }
 
 
-
     public static GetBuilder get() {
         return new GetBuilder();
     }
@@ -60,6 +62,17 @@ public class OkHttpUtils {
     public static PostFormBuilder post() {
         return new PostFormBuilder();
     }
+
+
+    public static PostFileBuilder postFile() {
+        return new PostFileBuilder();
+    }
+
+    public static PostStringBuilder PostString() {
+        return new PostStringBuilder();
+    }
+
+    ;
 
     public void cancelTag(Object tag) {
         for (Call call : mOkhttpClient.dispatcher().queuedCalls()) {

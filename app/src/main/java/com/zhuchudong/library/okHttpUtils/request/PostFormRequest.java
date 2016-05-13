@@ -50,6 +50,8 @@ public class PostFormRequest extends BaseOkHttpRequest {
         }
     }
 
+
+    //计算上传进度
     @Override
     protected RequestBody wrapRequestBody(RequestBody requestBody, final BaseCallBack callback) {
         if (callback == null) return requestBody;
