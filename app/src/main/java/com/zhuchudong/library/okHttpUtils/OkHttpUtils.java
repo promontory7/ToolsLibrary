@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.zhuchudong.library.okHttpUtils.builder.GetBuilder;
+import com.zhuchudong.library.okHttpUtils.builder.PostBytesBuilder;
 import com.zhuchudong.library.okHttpUtils.builder.PostFileBuilder;
 import com.zhuchudong.library.okHttpUtils.builder.PostFormBuilder;
 import com.zhuchudong.library.okHttpUtils.builder.PostStringBuilder;
@@ -72,7 +73,9 @@ public class OkHttpUtils {
         return new PostStringBuilder();
     }
 
-    ;
+    public static PostBytesBuilder postType() {
+        return new PostBytesBuilder();
+    }
 
     public void cancelTag(Object tag) {
         for (Call call : mOkhttpClient.dispatcher().queuedCalls()) {
