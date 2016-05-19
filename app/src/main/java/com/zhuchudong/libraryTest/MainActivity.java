@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.zhuchudong.toollibrary.StatusBarUtil;
 import com.zhuchudong.toollibrary.okHttpUtils.OkHttpUtils;
 import com.zhuchudong.toollibrary.okHttpUtils.callback.JsonCallBack;
 import com.zhuchudong.toollibrary.okHttpUtils.callback.StringCallBack;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         OkHttpUtils.getInstance();
         setContentView(R.layout.activity_main);
         findViewById(R.id.btn_netTest).setOnClickListener(this);
+        StatusBarUtil.setColor(MainActivity.this,getResources().getColor(R.color.colorPrimary),100);
     }
 
     @Override

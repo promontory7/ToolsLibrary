@@ -54,25 +54,40 @@ public class OkHttpUtils {
         return mOkhttpClient;
     }
 
-
+    /**
+     * Get
+     */
     public static GetBuilder get() {
         return new GetBuilder();
     }
 
+    /**
+     * Post 表单数据
+     */
     public static PostFormBuilder post() {
         return new PostFormBuilder();
     }
 
-
+    /**
+     * Post 上传文件
+     */
     public static PostFileBuilder postFile() {
         return new PostFileBuilder();
     }
 
+    /**
+     * Post 上传 String 内容
+     *   leeco
+     *
+     */
     public static PostStringBuilder PostString() {
         return new PostStringBuilder();
     }
 
-    public static PostBytesBuilder postType() {
+    /**
+     * Post 上传 Byte[] 数据
+     */
+    public static PostBytesBuilder postBytes() {
         return new PostBytesBuilder();
     }
 
