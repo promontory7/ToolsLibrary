@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.zhuchudong.toollibrary.L;
 import com.zhuchudong.toollibrary.StatusBarUtil;
 import com.zhuchudong.toollibrary.okHttpUtils.OkHttpUtils;
 import com.zhuchudong.toollibrary.okHttpUtils.callback.JsonCallBack;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         OkHttpUtils.getInstance();
         setContentView(R.layout.activity_main);
         findViewById(R.id.btn_netTest).setOnClickListener(this);
-        StatusBarUtil.setColor(MainActivity.this,getResources().getColor(R.color.colorPrimary),100);
+        StatusBarUtil.setColor(MainActivity.this, getResources().getColor(R.color.colorPrimary), 100);
     }
 
     @Override
@@ -31,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_netTest:
                 OkHttpUtils
                         .get()
-                        .addParams("account","12")
-                        .addParams("pwd","56")
+                        .addParams("account", "12")
+                        .addParams("pwd", "56")
                         .url(" http://www.rratchet.com/api/user/login")
                         .build()
                         .enqueue(MyJsonCallBack);
@@ -72,6 +73,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void onResponse(JSONObject response) {
             ((TextView) (findViewById(R.id.tv_detail))).setText(response.toString());
+            L.isShowLog=true;
+            L.d("D 测试");
+            L.e("E 测试");
+            L.i("I 测试");
+            L.w("W 测试");
+            new L().startWriteLogToSdcard(getExternalCacheDir()+"log.txt",true);
         }
     };
 }

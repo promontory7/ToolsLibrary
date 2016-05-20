@@ -1,6 +1,8 @@
 package com.zhuchudong.toollibrary.wifi;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 
@@ -95,6 +97,23 @@ public class WifiUtils {
         sb.append('.');
         sb.append(String.valueOf((int) ((ip >> 24) & 0xff)));
         return sb.toString();
+    }
+
+    /**
+     * 判断是否连接WIFI
+     * @param context  上下文
+     * @return  boolean
+     */
+    public static boolean isWifiConnected(Context context) {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) context.getSystemService(
+                Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiNetworkInfo = connectivityManager.getNetworkInfo(
+                ConnectivityManager.TYPE_WIFI);
+        if (wifiNetworkInfo.isConnected()) {
+            return true;
+        }
+        return false;
     }
 
 }

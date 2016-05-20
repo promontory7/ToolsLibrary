@@ -2,6 +2,7 @@
 package com.zhuchudong.toollibrary;
 
 import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
@@ -16,7 +17,8 @@ import java.util.Locale;
  * 日志相关类:默认是测试环境<br>
  * <b>支持：存储Log日志文件到本地。发送Log日志信息到服务器</b>
  */
-public class LogUtil {
+public class L {
+    public static boolean isShowLog = true;
 
     /* ========================下面的是本地存储相关的========================== */
     /**
@@ -74,8 +76,8 @@ public class LogUtil {
                 while (isRunning) {
                     line = reader.readLine();
                     if (line != null && line.length() > 0) {
-                        writer.append("PID:" + this.mPid + "\t"
-                                + sdf.format(new Date(System.currentTimeMillis())) + "\t" + line
+//
+                        writer.append(sdf.format(new Date(System.currentTimeMillis())) + "\t" + line
                                 + "\n");
                         writer.flush();
                     } else {
@@ -118,9 +120,9 @@ public class LogUtil {
      * 整个应用只需要调用一次即可:开始本地记录
      *
      * @param filePath 要写入的目的文件路径
-     * @param iswrite    是否需要写入sdk
+     * @param iswrite  是否需要写入sdk
      */
-    public void startWriteLogToSdcard(String filePath,boolean iswrite) {
+    public void startWriteLogToSdcard(String filePath, boolean iswrite) {
 
         if (iswrite) {
             if (logWriter == null) {
@@ -228,12 +230,12 @@ public class LogUtil {
     /**
      * 整个应用调用一次即可：上传日志数据
      *
-     * @param strUrl    上传所需要的url
-     * @param allParams 需要上传的额外的参数【除了日志以外】
-     * @param isUploadLog    是否需要上传
+     * @param strUrl      上传所需要的url
+     * @param allParams   需要上传的额外的参数【除了日志以外】
+     * @param isUploadLog 是否需要上传
      */
     public void startUploadLog(String strUrl, HashMap<String, String>
-            allParams,boolean isUploadLog) {
+            allParams, boolean isUploadLog) {
 
         if (isUploadLog) {
             if (logUploader == null) {
@@ -259,9 +261,8 @@ public class LogUtil {
      *
      * @param tag     日志标记
      * @param message 日志信息
-     * @param isShowLog    是否显示
      */
-    public static void v(String tag, String message,boolean isShowLog) {
+    public static void v(String tag, String message) {
 
         if (isShowLog) {
             Log.v(tag, getDetailMessage(message));
@@ -272,9 +273,8 @@ public class LogUtil {
      * verbose详细日志
      *
      * @param message 日志信息
-     * @param isShowLog    是否显示
      */
-    public static void v(String message,boolean isShowLog) {
+    public static void v(String message) {
         if (isShowLog) {
             String[] output = getTagAndDetailMessage(message);
             Log.v(output[0], output[1]);
@@ -286,9 +286,8 @@ public class LogUtil {
      *
      * @param tag     日志标记
      * @param message 日志信息
-     * @param isShowLog    是否显示
      */
-    public static void e(String tag, String message,boolean isShowLog) {
+    public static void e(String tag, String message) {
 
         if (isShowLog) {
             Log.e(tag, getDetailMessage(message));
@@ -299,9 +298,8 @@ public class LogUtil {
      * error错误日志
      *
      * @param message 日志信息
-     * @param isShowLog    isShowLog
      */
-    public static void e(String message,boolean isShowLog) {
+    public static void e(String message) {
 
         if (isShowLog) {
             String[] output = getTagAndDetailMessage(message);
@@ -314,9 +312,8 @@ public class LogUtil {
      *
      * @param tag     日志标记
      * @param message 日志信息
-     * @param isShowLog    isShowLog
      */
-    public static void i(String tag, String message,boolean isShowLog) {
+    public static void i(String tag, String message) {
 
         if (isShowLog) {
             Log.i(tag, getDetailMessage(message));
@@ -327,9 +324,8 @@ public class LogUtil {
      * info信息日志
      *
      * @param message 日志信息
-     * @param isShowLog    isShowLog
      */
-    public static void i(String message,boolean isShowLog) {
+    public static void i(String message) {
 
         if (isShowLog) {
             String[] output = getTagAndDetailMessage(message);
@@ -342,9 +338,8 @@ public class LogUtil {
      *
      * @param tag     日志标记
      * @param message 日志信息
-     * @param isShowLog    isShowLog
      */
-    public static void d(String tag, String message,boolean isShowLog) {
+    public static void d(String tag, String message) {
 
         if (isShowLog) {
             Log.d(tag, getDetailMessage(message));
@@ -355,9 +350,8 @@ public class LogUtil {
      * debug调试日志
      *
      * @param message 日志信息
-     * @param isShowLog    isShowLog
      */
-    public static void d(String message,boolean isShowLog) {
+    public static void d(String message) {
 
         if (isShowLog) {
             String[] output = getTagAndDetailMessage(message);
@@ -370,9 +364,8 @@ public class LogUtil {
      *
      * @param tag     日志标记
      * @param message 日志信息
-     * @param isShowLog  isShowLog
      */
-    public static void w(String tag, String message,boolean isShowLog) {
+    public static void w(String tag, String message) {
 
         if (isShowLog) {
             Log.w(tag, getDetailMessage(message));
@@ -383,9 +376,8 @@ public class LogUtil {
      * warn警告日志
      *
      * @param message 日志信息
-     * @param isShowLog    isShowLog
      */
-    public static void w(String message,boolean isShowLog) {
+    public static void w(String message) {
 
         if (isShowLog) {
             String[] output = getTagAndDetailMessage(message);
@@ -402,8 +394,8 @@ public class LogUtil {
     private static String[] getTagAndDetailMessage(String message) {
         String output[] = new String[2];
         for (StackTraceElement ste : (new Throwable()).getStackTrace()) {
-            //栈顶肯定是LogUtil这个类自己
-            if (LogUtil.class.getName().equals(ste.getClassName())) {
+            //Log.e("StackTraceElement",ste.toString());
+            if (L.class.getName().equals(ste.getClassName())) {
                 continue;
             }
             //栈顶的下一个就是需要调用这个类的地方
@@ -428,7 +420,7 @@ public class LogUtil {
         String detailMessage = "";
         for (StackTraceElement ste : (new Throwable()).getStackTrace()) {
             //栈顶肯定是LogUtil这个类自己
-            if (LogUtil.class.getName().equals(ste.getClassName())) {
+            if (L.class.getName().equals(ste.getClassName())) {
                 continue;
             }
             //栈顶的下一个就是需要调用这个类的地方[此处取出类名和方法名还有行号]
