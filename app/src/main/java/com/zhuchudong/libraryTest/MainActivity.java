@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.zhuchudong.toollibrary.DialogUtils;
 import com.zhuchudong.toollibrary.L;
 import com.zhuchudong.toollibrary.StatusBarUtil;
 import com.zhuchudong.toollibrary.okHttpUtils.OkHttpUtils;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         OkHttpUtils.getInstance();
         setContentView(R.layout.activity_main);
         findViewById(R.id.btn_netTest).setOnClickListener(this);
+        findViewById(R.id.btn_diaTest).setOnClickListener(this);
         StatusBarUtil.setColor(MainActivity.this, getResources().getColor(R.color.colorPrimary), 100);
     }
 
@@ -44,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                        .addParams("pwd","56")
 //                        .build()
 //                        .enqueue(MyJsonCallBack);
+                break;
+            case R.id.btn_diaTest:
+                DialogUtils.showAlert(MainActivity.this,"哈哈哈哈哈哈哈","fregregthrthrtgebrtrttb","OK",null,"cancel",null);
                 break;
             default:
                 break;
@@ -73,12 +78,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void onResponse(JSONObject response) {
             ((TextView) (findViewById(R.id.tv_detail))).setText(response.toString());
-            L.isShowLog=true;
+            L.isShowLog = true;
             L.d("D 测试");
             L.e("E 测试");
             L.i("I 测试");
             L.w("W 测试");
-            new L().startWriteLogToSdcard(getExternalCacheDir()+"log.txt",true);
+            new L().startWriteLogToSdcard(getExternalCacheDir() + "log.txt", true);
         }
     };
 }

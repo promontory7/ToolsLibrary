@@ -15,9 +15,17 @@
         android:layout_height="wrap_content"
         android:text="网络请求测试" />
 
+
     <TextView
-        android:layout_below="@+id/btn_netTest"
         android:id="@+id/tv_detail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_netTest" />
+
+    <Button
+        android:id="@+id/btn_diaTest"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/btn_netTest"
+        android:layout_height="wrap_content"
+        android:text="弹窗测试" />
 </RelativeLayout>

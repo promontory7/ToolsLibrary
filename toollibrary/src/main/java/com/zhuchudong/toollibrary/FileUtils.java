@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtils {
-    public final String TAG = "LAZY";
+    public final String TAG = "ME";
     public final static String FILE_EXTENSION_SEPARATOR = ".";
     /** URI类型：file */
     public static final String URI_TYPE_FILE = "file";
@@ -337,7 +337,6 @@ public class FileUtils {
      * @return 返回文件的信息
      */
     public static String getFileNameWithoutExtension(String filePath) {
-
 
         if (StringUtils.isEmpty(filePath)) {
             return filePath;
