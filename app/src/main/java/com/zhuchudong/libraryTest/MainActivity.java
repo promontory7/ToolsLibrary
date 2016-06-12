@@ -1,5 +1,6 @@
 package com.zhuchudong.librarytest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,7 @@ import com.zhuchudong.toollibrary.StatusBarUtil;
 import com.zhuchudong.toollibrary.okHttpUtils.OkHttpUtils;
 import com.zhuchudong.toollibrary.okHttpUtils.callback.JsonCallBack;
 import com.zhuchudong.toollibrary.okHttpUtils.callback.StringCallBack;
+import com.zhuchudong.toollibrary.xrecyclerview.XRecyclerView;
 
 import org.json.JSONObject;
 
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         findViewById(R.id.btn_netTest).setOnClickListener(this);
         findViewById(R.id.btn_diaTest).setOnClickListener(this);
+        findViewById(R.id.btn_xrecyclerview).setOnClickListener(this);
         StatusBarUtil.setColor(MainActivity.this, getResources().getColor(R.color.colorPrimary), 100);
     }
 
@@ -49,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_diaTest:
                 DialogUtils.showAlert(MainActivity.this,"哈哈哈哈哈哈哈","fregregthrthrtgebrtrttb","OK",null,"cancel",null);
+                break;
+            case R.id.btn_xrecyclerview:
+                startActivity(new Intent(MainActivity.this, XRecyclerviewActivity.class));
                 break;
             default:
                 break;
