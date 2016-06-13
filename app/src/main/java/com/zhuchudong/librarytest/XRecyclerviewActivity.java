@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.zhuchudong.toollibrary.ToastUtils;
 import com.zhuchudong.toollibrary.xrecyclerview.ProgressStyle;
 import com.zhuchudong.toollibrary.xrecyclerview.XRecyclerView;
 
@@ -28,16 +29,23 @@ public class XRecyclerviewActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xrecyclerview);
+
         mRecyclerView = (XRecyclerView)this.findViewById(R.id.xrecyclerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
 
         mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-        mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallZigZagDeflect);
-        mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
+//        mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallZigZagDeflect);
+        mRecyclerView.setArrowImageView(R.drawable.xrecyclerview_pull_arrow2);
 
         View header1 =   LayoutInflater.from(this).inflate(R.layout.recyclerview_header, (ViewGroup)findViewById(android.R.id.content),false);
+        header1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showToast(XRecyclerviewActivity.this,"点击了HEADER");
+            }
+        });
 
         mRecyclerView.addHeaderView(header1);
 
