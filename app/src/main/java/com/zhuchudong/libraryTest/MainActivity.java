@@ -14,6 +14,8 @@ import com.zhuchudong.toollibrary.okHttpUtils.callback.JsonCallBack;
 import com.zhuchudong.toollibrary.okHttpUtils.callback.StringCallBack;
 import com.zhuchudong.toollibrary.xrecyclerview.XRecyclerView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import okhttp3.Call;
@@ -51,7 +53,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                        .enqueue(MyJsonCallBack);
                 break;
             case R.id.btn_diaTest:
-                DialogUtils.showAlert(MainActivity.this,"哈哈哈哈哈哈哈","fregregthrthrtgebrtrttb","OK",null,"cancel",null);
+                DialogUtils.showPrompt(MainActivity.this,"干啥子");
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("hehe", "123456");
+                    jsonObject.put("hehe", "被修改了");
+                    JSONArray jsonArray =new JSONArray();
+                    jsonArray.put(1);
+                    jsonArray.put(2);
+                    jsonArray.put(3);
+                    jsonArray.put(1);
+                    jsonObject.put("array",jsonArray);
+
+                    JSONArray jsonArray1 =jsonObject.optJSONArray("array");
+                    jsonArray1.put(5);
+                    jsonObject.put("array",jsonArray1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                ((TextView) (findViewById(R.id.tv_detail))).setText(jsonObject.toString());
                 break;
             case R.id.btn_xrecyclerview:
                 startActivity(new Intent(MainActivity.this, XRecyclerviewActivity.class));
