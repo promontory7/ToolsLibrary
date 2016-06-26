@@ -28,6 +28,24 @@ public class RequestCall {
         this.mBaseOkHttpRequest = request;
     }
 
+    public RequestCall readTimeOut(long readTimeOut)
+    {
+        this.readTimeOut = readTimeOut;
+        return this;
+    }
+
+    public RequestCall writeTimeOut(long writeTimeOut)
+    {
+        this.writeTimeOut = writeTimeOut;
+        return this;
+    }
+
+    public RequestCall connTimeOut(long connTimeOut)
+    {
+        this.connTimeOut = connTimeOut;
+        return this;
+    }
+
     public void enqueue(BaseCallBack callback) {
         buildCall(callback);
 

@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .addParams("pwd", "56")
                         .url(" http://www.rratchet.com/api/user/login")
                         .build()
+                        .connTimeOut(1000)
                         .enqueue(MyJsonCallBack);
 //                OkHttpUtils
 //                        .post()
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ((TextView) (findViewById(R.id.tv_detail))).setText(jsonObject.toString());
                 break;
             case R.id.btn_xrecyclerview:
-                startActivity(new Intent(MainActivity.this, XRecyclerviewActivity.class));
+                startActivity(new Intent(MainActivity.this, com.zhuchudong.librarytest.XRecyclerviewActivity.class));
                 break;
             default:
                 break;
