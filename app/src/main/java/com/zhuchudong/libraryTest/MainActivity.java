@@ -12,7 +12,6 @@ import com.zhuchudong.toollibrary.StatusBarUtil;
 import com.zhuchudong.toollibrary.okHttpUtils.OkHttpUtils;
 import com.zhuchudong.toollibrary.okHttpUtils.callback.JsonCallBack;
 import com.zhuchudong.toollibrary.okHttpUtils.callback.StringCallBack;
-import com.zhuchudong.toollibrary.xrecyclerview.XRecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
