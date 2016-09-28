@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.zhuchudong.toollibrary.DialogUtils;
 import com.zhuchudong.toollibrary.L;
 import com.zhuchudong.toollibrary.StatusBarUtil;
+import com.zhuchudong.toollibrary.async.AsyncExecutor;
 import com.zhuchudong.toollibrary.okHttpUtils.OkHttpUtils;
 import com.zhuchudong.toollibrary.okHttpUtils.callback.JsonCallBack;
 import com.zhuchudong.toollibrary.okHttpUtils.callback.StringCallBack;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_netTest).setOnClickListener(this);
         findViewById(R.id.btn_diaTest).setOnClickListener(this);
         findViewById(R.id.btn_xrecyclerview).setOnClickListener(this);
+        findViewById(R.id.btn_task).setOnClickListener(this);
         StatusBarUtil.setColor(MainActivity.this, getResources().getColor(R.color.colorPrimary), 100);
     }
 
@@ -53,21 +55,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                        .enqueue(MyJsonCallBack);
                 break;
             case R.id.btn_diaTest:
-                DialogUtils.showPrompt(MainActivity.this,"干啥子");
+                DialogUtils.showPrompt(MainActivity.this, "干啥子");
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("hehe", "123456");
                     jsonObject.put("hehe", "被修改了");
-                    JSONArray jsonArray =new JSONArray();
+                    JSONArray jsonArray = new JSONArray();
                     jsonArray.put(1);
                     jsonArray.put(2);
                     jsonArray.put(3);
                     jsonArray.put(1);
-                    jsonObject.put("array",jsonArray);
+                    jsonObject.put("array", jsonArray);
 
-                    JSONArray jsonArray1 =jsonObject.optJSONArray("array");
+                    JSONArray jsonArray1 = jsonObject.optJSONArray("array");
                     jsonArray1.put(5);
-                    jsonObject.put("array",jsonArray1);
+                    jsonObject.put("array", jsonArray1);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -75,6 +77,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_xrecyclerview:
                 startActivity(new Intent(MainActivity.this, com.zhuchudong.librarytest.XRecyclerviewActivity.class));
+                break;
+            case R.id.btn_task:
+                AsyncExecutor asyncExecutor =new AsyncExecutor();
+                for(int i=0;i<20;i++){
+                    asyncExecutor.execute(new ExampleTask(this));
+                }
                 break;
             default:
                 break;
